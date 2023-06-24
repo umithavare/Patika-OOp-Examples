@@ -89,6 +89,7 @@ public class Player  {
                 "\tPara:" + this.getMoney());
 
     }
+
     public void initPlayer(GameCharacter gameCharacter){
         this.setDamage(gameCharacter.getDamage());
         this.setHealth(gameCharacter.getHealth());
