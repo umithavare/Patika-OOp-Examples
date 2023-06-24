@@ -15,10 +15,18 @@ public class Weapon {
 
     public static Weapon[] weapons(){
         Weapon[] weaponList = new Weapon[3];
-        weaponList[0] = new Weapon("Tabanca",1,2,25);
+        weaponList[0] = new Weapon("Tabanca",1,2,10);
         weaponList[1] = new Weapon("Kilic",2,5,35);
         weaponList[2] = new Weapon("Tufek",3,7,45);
         return weaponList;
+    }
+    public static Weapon getWeaponById(int id){
+        for (Weapon w : Weapon.weapons()){
+            if (w.getId() == id){
+                return w;
+            }
+        }
+        return null;
     }
 
     public String getName() {
