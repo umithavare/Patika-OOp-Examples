@@ -20,7 +20,10 @@ public class Game {
                 System.out.println();
                 System.out.println("1 - Guvenli Ev >> Burasi guvenlidir. Dusman yok");
                 System.out.println("2 - magaza >> Silah ve zirh satin alabilirsiniz");
-                System.out.print("0 - Cikis yap ve oyunu sonlandir");
+                System.out.println("3 - Magara --> Odul <yemek> , dikkat Zombie Cikabilir!!");
+                System.out.println("4 - Nehir --> Odul <su> , dikkat Ayi Cikabilir!!");
+                System.out.println("5 - Orman --> Odul <odun> , dikkat Vampir Cikabilir!!");
+                System.out.println("0 - Cikis yap ve oyunu sonlandir");
                 int selectLocation = input.nextInt();
                 switch (selectLocation){
                     case 0:
@@ -32,8 +35,17 @@ public class Game {
                     case 2:
                         location = new ToolStore(player);
                         break;
+                    case 3:
+                        location = new Cave(player);
+                        break;
+                    case 4:
+                        location = new River(player);
+                        break;
+                    case 5:
+                        location = new Forest(player);
+                        break;
                     default:
-                        location = new SafeHouse(player);
+                        System.out.println("Lutfen gecerli bir bolge giriniz");
                         break;
                 }
                 if (location == null){
