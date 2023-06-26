@@ -23,7 +23,7 @@ public abstract class BattleLoc extends Location {
         System.out.println("Savasmak icin 'S', Kacmak icin 'K' tusuna bas ");
         String selectChoice = input.nextLine().toUpperCase();
         if (selectChoice.equals("S") && combat(obstacleNumber)){
-            System.out.println(this.getName() + " tum dusmanlari yendiniz");
+            System.out.println(this.getName() + " konumundaki tum dusmanlari yendiniz");
             return true;
         }
         if (this.getPlayer().getHealth() <= 0){

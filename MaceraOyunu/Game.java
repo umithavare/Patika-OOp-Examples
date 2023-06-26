@@ -11,6 +11,7 @@ public class Game {
         Player player = new Player(playerName);
         System.out.println(player.getName() + " Hos Geldiniz");
         System.out.println("lutfen bir karakter seciniz: ");
+        System.out.println("****************************");
         player.selectChar();
         Location location = null;
         while (true){

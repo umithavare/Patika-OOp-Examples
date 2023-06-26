@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Player  {
     private int damage;
     private int health;
+    private int originalHealth;
     private int money ;
     private String name;
     private String charName;
@@ -57,6 +58,8 @@ public class Player  {
     }
 
     public void setHealth(int health) {
+        if (health < 0 )
+            health = 0;
         this.health = health;
     }
 
@@ -74,6 +77,14 @@ public class Player  {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getOriginalHealth() {
+        return originalHealth;
+    }
+
+    public void setOriginalHealth(int originalHealth) {
+        this.originalHealth = originalHealth;
     }
 
     public void selectChar(){
@@ -112,7 +123,9 @@ public class Player  {
     public void initPlayer(GameCharacter gameCharacter){
         this.setDamage(gameCharacter.getDamage());
         this.setHealth(gameCharacter.getHealth());
+        this.setOriginalHealth(gameCharacter.getHealth());
         this.setMoney(gameCharacter.getMoney());
         this.setCharName(gameCharacter.getName());
+
     }
 }
