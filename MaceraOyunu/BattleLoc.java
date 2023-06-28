@@ -47,13 +47,17 @@ public abstract class BattleLoc extends Location {
             this.getObstacle().setHealth(this.getObstacle().getOriginalHealth());
             playerStats();
             obstacleStats(i);
-            while (this.getPlayer().getHealth() > 0 && this.getObstacle().getHealth() > 0){
-                System.out.println("Vurmak icin 'V', Kacmak icin 'K' tusuna bas ");
-                String selectCombat = input.nextLine().toUpperCase();
-                if (selectCombat.equals("V")){
-                    System.out.println("Siz vurdunuz");
-                    this.getObstacle().setHealth(this.getObstacle().getHealth() - this.getPlayer().getTotalDamage());
-                    afterHit();
+            Random random = new Random();
+            int randomChance = random.nextInt(2);
+            if (randomChance == 0){
+                System.out.println("Sans sizde. Ilk siz baslayacaksiniz");
+                while (this.getPlayer().getHealth() > 0 && this.getObstacle().getHealth() > 0){ // kullanicinin il baslama senaryosu
+                    System.out.println("Fight 'F', Kacmak icin 'K' tusuna bas ");
+                    String selectCombat = input.nextLine().toUpperCase();
+                    if (selectCombat.equals("F")){
+                        System.out.println("Siz vurdunuz");
+                        this.getObstacle().setHealth(this.getObstacle().getHealth() - this.getPlayer().getTotalDamage());
+                        afterHit();
                     if (this.getObstacle().getHealth() > 0){
                         System.out.println();
                         System.out.println(this.getObstacle().getName() + " size vurdu!!");
@@ -64,8 +68,32 @@ public abstract class BattleLoc extends Location {
                         this.getPlayer().setHealth(this.getPlayer().getHealth() - obstacleDamage);
                         afterHit();
                     }
-                }
+                    }
                 else return false;
+                }
+            }
+            else {
+                System.out.println("Ilk once dusman baslayacak");
+                while (this.getPlayer().getHealth() > 0 && this.getObstacle().getHealth() > 0){ // Canavarin ilk baslama senaryosu
+                    System.out.println("Fight icin 'F', Kacmak icin 'K' tusuna bas ");
+                    String selectCombat = input.nextLine().toUpperCase();
+                    if (selectCombat.equals("F")){
+                        System.out.println("Dusman vurdu");
+                        int obstacleDamage = this.getObstacle().getDamage() - this.getPlayer().getInventory().getArmor().getBlock();
+                        if (obstacleDamage < 0){
+                            obstacleDamage = 0;
+                        }
+                        this.getPlayer().setHealth(this.getPlayer().getHealth() - obstacleDamage);
+                        afterHit();
+                        if (this.getPlayer().getHealth() > 0){
+                            System.out.println();
+                            System.out.println("siz vurdunuz!!");
+                            this.getObstacle().setHealth(this.getObstacle().getHealth() - this.getPlayer().getTotalDamage());
+                            afterHit();
+                        }
+                    }
+                    else return false;
+                }
             }
             if (this.getObstacle().getHealth() < this.getPlayer().getHealth()){
                 System.out.println("Savasi kazandiniz");
