@@ -24,6 +24,16 @@ public abstract class BattleLoc extends Location {
         String selectChoice = input.nextLine().toUpperCase();
         if (selectChoice.equals("S") && combat(obstacleNumber)){
             System.out.println(this.getName() + " konumundaki tum dusmanlari yendiniz");
+            if(this.award.equals("Water")){
+                System.out.println("Su kazandiniz");
+                getPlayer().getInventory().setWater(true);
+            }else if (this.award.equals("FireWood")){
+                System.out.println("Odun kazandiniz");
+                getPlayer().getInventory().setFireWood(true);
+            }else if (this.award.equals("food")) {
+                System.out.println("Yemek kazandiniz");
+                getPlayer().getInventory().setFood(true);
+            }
             return true;
         }
         if (this.getPlayer().getHealth() <= 0){

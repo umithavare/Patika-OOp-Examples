@@ -36,14 +36,31 @@ public class Game {
                     case 2:
                         location = new ToolStore(player);
                         break;
-                    case 3:
+                    case 3: if(!player.getInventory().isFood()){
+                        System.out.println("Magaraya giriyorsun");
                         location = new Cave(player);
+                    }
+                    else {
+                        System.out.println("Daha once bu odulu kazandıgın icin bu haritaya girilemez");
+                        location = new SafeHouse(player);
+                    }
                         break;
-                    case 4:
+                    case 4: if(!player.getInventory().isWater()){
+                        System.out.println("Nehire giriyorsun");
                         location = new River(player);
+                    }
+                    else {
+                        System.out.println("Daha once bu odulu kazandigin icin bu haritaya girilemez");
+                        location = new SafeHouse(player);
+                    }
                         break;
-                    case 5:
+                    case 5:if (!player.getInventory().isFireWood()){
                         location = new Forest(player);
+                    }
+                    else {
+                        System.out.println("Daha once bu odulu kazandıgın icin bu haritaya girilemez");
+                        location = new SafeHouse(player);
+                    }
                         break;
                     default:
                         System.out.println("Lutfen gecerli bir bolge giriniz");
