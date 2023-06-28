@@ -96,14 +96,71 @@ public abstract class BattleLoc extends Location {
                 }
             }
             if (this.getObstacle().getHealth() < this.getPlayer().getHealth()){
+                if (getObstacle().getName().equals("Yilan")){
+                    System.out.println("Savasi kazandiniz.");
+                    snakeAward();
+                }
+                else{
                 System.out.println("Savasi kazandiniz");
                 System.out.println(this.getObstacle().getAward() + " Para kazandiniz");
                 this.getPlayer().setMoney(this.getPlayer().getMoney() + this.getObstacle().getAward());
                 System.out.println("Guncel paraniz : " + this.getPlayer().getMoney());
+                }
             }
             else return false;
         }
         return true;
+    }
+    public void snakeAward(){
+        Random random = new Random();
+        int dropChance = random.nextInt(100) + 1;
+        if (dropChance <= 15){ // Tufek kazanma ihtimalinin senaryosu
+            int weaponDropChance = random.nextInt(100) + 1;
+            if (weaponDropChance <= 20){
+                System.out.println("Tebrikler Tufek Kazandiniz");
+                this.getPlayer().getInventory().setWeapon(Weapon.getWeaponById(3));
+            }
+            else if (weaponDropChance <= 50){
+                System.out.println("Tebrikler Kilic Kazandiniz");
+                this.getPlayer().getInventory().setWeapon(Weapon.getWeaponById(2));
+            }
+            else if (weaponDropChance <= 100){
+                System.out.println("Tebrikler Tabanca Kazandiniz");
+                this.getPlayer().getInventory().setWeapon(Weapon.getWeaponById(1));
+            }
+        }
+        else if (dropChance <= 30){
+            int armorDropChance = random.nextInt(100) + 1;
+            if (armorDropChance <= 20){
+                System.out.println("Tebrikler agir zirh kazandiniz");
+                this.getPlayer().getInventory().setArmor(Armor.getArmorById(3));
+            }
+            else if (armorDropChance <= 50){
+                System.out.println("Tebrikler orta zirh kazandiniz");
+                this.getPlayer().getInventory().setArmor(Armor.getArmorById(2));
+            }
+            else if (armorDropChance <= 100){
+                System.out.println("Tebrikler hafif zirh kazandiniz");
+                this.getPlayer().getInventory().setArmor(Armor.getArmorById(1));
+            }
+        }
+        else if (dropChance <= 55){
+            int moneyDropChance = random.nextInt(100) + 1;
+            if (moneyDropChance <= 20 ){
+                System.out.println("Tebrikler 10 para kazandiniz");
+                this.getPlayer().setMoney(this.getPlayer().getMoney() + 10);
+            }
+            if (moneyDropChance <= 50 ){
+                System.out.println("Tebrikler 5 para kazandiniz");
+                this.getPlayer().setMoney(this.getPlayer().getMoney() + 5);
+            }
+            if (moneyDropChance <= 100 ){
+                System.out.println("Tebrikler 1 para kazandiniz");
+                this.getPlayer().setMoney(this.getPlayer().getMoney() + 1);
+            }
+        }
+        else System.out.println("Odul olarak Hicbir Sey kazanmadiniz...");
+
     }
     public void afterHit(){
         System.out.println("Caniniz : " + this.getPlayer().getHealth());

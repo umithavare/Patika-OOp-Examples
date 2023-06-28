@@ -24,6 +24,7 @@ public class Game {
                 System.out.println("3 - Magara --> Odul <yemek> , dikkat Zombie Cikabilir!!");
                 System.out.println("4 - Nehir --> Odul <su> , dikkat Ayi Cikabilir!!");
                 System.out.println("5 - Orman --> Odul <odun> , dikkat Vampir Cikabilir!!");
+                System.out.println("6 - Maden --> Odul <silah,zirh,para> , dikkat Yilan Cikabilir!!");
                 System.out.println("0 - Cikis yap ve oyunu sonlandir");
                 int selectLocation = input.nextInt();
                 switch (selectLocation){
@@ -61,6 +62,9 @@ public class Game {
                         System.out.println("Daha once bu odulu kazandıgın icin bu haritaya girilemez");
                         location = new SafeHouse(player);
                     }
+                        break;
+                    case 6:
+                        location = new Mine(player);
                         break;
                     default:
                         System.out.println("Lutfen gecerli bir bolge giriniz");
