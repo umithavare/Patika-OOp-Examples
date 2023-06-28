@@ -1,1 +1,3 @@
 # Patika-OOp-Examples
+
+UML DIAGRAMS EXAMPLES etc...
